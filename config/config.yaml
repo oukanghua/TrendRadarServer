@@ -77,9 +77,12 @@ platforms:
       name: "抖音"
     - id: "zhihu"
       name: "知乎"
-
-
-
+    - id: "36kr"
+      name: "36氪"
+    - id: "hackernews"
+      name: "HackerNews"
+    - id: "juejin"
+      name: "掘金"
 # ===============================================================
 # 3. 数据源 - RSS 订阅
 #
