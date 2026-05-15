@@ -74,7 +74,7 @@ class ParserService:
             数据库文件路径，如果不存在则返回 None
         """
         date_str = self.get_date_folder_name(date)
-        db_path = self.project_root / "output" / date_str / f"{db_type}.db"
+        db_path = self.project_root / "output" / db_type / f"{date_str}.db"
         if db_path.exists():
             return db_path
         return None

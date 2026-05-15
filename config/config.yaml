@@ -83,6 +83,10 @@ platforms:
       name: "HackerNews"
     - id: "juejin"
       name: "掘金"
+    - id: "github"
+      name: "GitHub" 
+    - id: "linuxdo"
+      name: "LinuxDo"    
 # ===============================================================
 # 3. 数据源 - RSS 订阅
 #

@@ -273,15 +273,17 @@ class StorageSyncTools:
             failed_dates = []
 
             for date_str in target_dates:
-                # 检查本地是否已存在
-                if date_str in local_dates:
+                today_str = now.strftime("%Y-%m-%d")
+                is_today = date_str == today_str
+                # 当天的持续同步，历史的检查本地是否已存在
+                if not is_today and date_str in local_dates:
                     skipped_dates.append(date_str)
                     continue
 
                 # 拉取单个日期
                 try:
-                    local_date_dir = local_dir / date_str
-                    local_db_path = local_date_dir / "news.db"
+                    local_date_dir = local_dir / "news"
+                    local_db_path = local_date_dir / f"{date_str}.db"
                     remote_key = f"news/{date_str}.db"
 
                     local_date_dir.mkdir(parents=True, exist_ok=True)
