@@ -1131,7 +1131,24 @@ def run_server(
     """
     # 初始化工具实例
     _get_tools(project_root)
-
+    # ---------- 启动自动同步180文件 ----------
+    if transport == 'http':
+        import threading
+        import time
+        def auto_sync():
+            time.sleep(5)
+            try:
+                storage_tool = _tools_instances.get('storage')
+                if storage_tool:
+                    print("[AutoSync] 开始从远程存储拉取最近180天的数据...")
+                    result = storage_tool.sync_from_remote(days=180)
+                    print(f"[AutoSync] 同步完成: {result.get('message', '成功')}")
+                else:
+                    print("[AutoSync] 未找到 StorageSyncTools 实例")
+            except Exception as e:
+                print(f"[AutoSync] 同步失败: {e}")
+        threading.Thread(target=auto_sync, daemon=True).start()
+    # ---------- 同步代结束 ----------
     # 打印启动信息
     print()
     print("=" * 60)
